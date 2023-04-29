@@ -18,23 +18,23 @@ iframe {
   }
 
   #switchButton {
-    font-size: 18px; /* 设置字体大小 */
-    padding: 12px 24px; /* 设置内边距（上下12px，左右24px） */
-    border: none; /* 移除边框 */
-    background-color: #e5a3a1; /* 设置背景颜色 */
-    color: white; /* 设置文本颜色 */
+    font-size: 18px; 
+    padding: 12px 24px; 
+    border: none; /* remove the border*/
+    background-color: #e5a3a1; 
+    color: white; /* text color */
     text-align: center;
     text-decoration: none;
-    cursor: pointer; /* 将鼠标指针设置为手形 */
-    border-radius: 40px; /* 设置圆角边框 */
-    transition: background-color 0.6s; /* 添加背景颜色过渡动画 */
-    /* 其他样式规则 */
-    display: block; /* 设置为块级元素 */
-    margin: 20px auto; /* 设置左右外边距为auto，自动居中 */
+    cursor: pointer; /* set mouse shape */
+    border-radius: 40px; /* set rounded corners */
+    transition: background-color 0.6s; /* background colour transition animation */
+    
+    display: block; 
+    margin: 20px auto; 
   }
 
   #switchButton:hover {
-    background-color: #f3eae2; /* 设置鼠标悬停时的背景颜色 */
+    background-color: #f3eae2; /* the background colour on mouse hover */
     color:#e5a3a1;
   }
   

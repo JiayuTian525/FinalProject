@@ -1,10 +1,10 @@
 
-//Opening animation
+//The opening animation of the poem
 
-let i = 0;
-let timer = 0;
-let timerA = 0;
-let transA = 0;
+let i = 0; //For circles
+let timer = 0; //For time
+let timerA = 0; //For time (arrow)
+let transA = 0; //For transparency
 let circleColorSwitch = false;
 let bgColorSwitch = false;
 
@@ -20,31 +20,24 @@ function draw() {
   timerA++;
   transA  = transA + 2.3;
   
-  // 控制背景颜色
-  //if (bgColorSwitch) {
-  //   background(232, 123, 116); // 粉色
-  // } else {
-  //   background(89, 151, 155); // 蓝绿
-  // }
-  
   background(243, 234, 226);
   
   push();
-  // 控制圆形填充颜色
+
+  // Set stroke color based on circleColorSwitch
   if (circleColorSwitch) {
-    stroke(68, 105, 161); // 蓝色
+    stroke(68, 105, 161); // blue
   } else {
-    stroke(232, 123, 116); // 粉色
+    stroke(232, 123, 116); // pink
   }
   
-  //noStroke();
   strokeWeight(50);
   noFill();
   ellipse(windowWidth/2, windowHeight/2, 500*sin(i), 500*sin(i));
   i += 0.1;
   pop();
   
-  // 每30帧切换一次颜色
+  // Switching colours every 30 frames
   timer++;
   if (timer > 30) {
     circleColorSwitch = !circleColorSwitch;
@@ -61,14 +54,15 @@ function draw() {
   let middle = sourceText.length / 2;
   let left = middle - ((mouseX / width) * middle);
   let right = middle + ((mouseX / width) * middle);
+  //Draw text with substring based on mouseX position
   text(
     sourceText.substring(left, right+1),
     width/2, height/2);
   pop();
   
+  // Animate arrow consists of a rectangles after 90 frames
   fill(89, 151, 155, transA);
   if(timerA>90){
-    //fill(255, transA);
     noStroke();
   
     push();

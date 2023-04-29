@@ -1,3 +1,6 @@
+//This chapter uses the expression recognition in ml5.js.
+//Showing the screen effect when a smile is detected on a face
+
 let faceapi;
 let detections = [];
 
@@ -16,17 +19,17 @@ function preload() {
   narratorS = loadSound('smile.mp3');
 }
 
-//创建画布和视频元素，并初始化faceapi对象，以便于后续使用
+//create the canvas, video elements and initialize the faceapi object
 function setup() {
   frameRate();
   canvas = createCanvas(windowWidth, windowHeight);
   canvas.id("canvas");
 
-  video = createCapture(VIDEO);// Creat the video
+  video = createCapture(VIDEO); //creat the video
   video.id("video");
   video.size(width, height);
   video.hide();
-  
+  //the number of the petals
   for (let i = 0; i < 100; i++) {
     petals.push(new Petal());
   }
@@ -46,6 +49,7 @@ function draw() {
   timer++;
   transW ++;
   
+  //show the text according to time
   if(timer>5 && timer< 180){
     push();
     textSize(18);
@@ -75,27 +79,27 @@ function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
 }
 
-//当faceapi对象准备好检测人脸时，调用这个函数开始检测
+//When the faceapi object is ready to detect a face, call this function to start the detection
 function faceReady() {
   faceapi.detect(gotFaces);// Start detecting faces
 }
 
-// Got faces 当faceapi检测到人脸时，调用这个函数对人脸进行处理，包括绘制人脸检测框、绘制面部特征点、绘制面部表情、调用faceapi对象继续检测
+//When faceapi detects a face, it calls this function to process the face
 function gotFaces(error, result) {
   if (error) {
     console.log(error);
     return;
   }
 
-  detections = result;　//Now all the data in this detections
+  detections = result;//Now all the data in this detections
   
+  // if the happy emotion is detected
   if (detections.length > 0) {
     let {angry, happy, surprised} = detections[0].expressions;
     if (happy > 0.5) {
     
     }else {
       background(243, 234, 226);
-      //flower();
     }
   } else {
     background(243, 234, 226);
@@ -107,7 +111,7 @@ function gotFaces(error, result) {
   faceapi.detect(gotFaces);// Call the function again at here
 }
 
-//绘制人脸检测框
+//Draw face detection box
 function drawBoxs(detections){
   
   if (detections.length > 0) {//If at least 1 face is detected
@@ -123,7 +127,7 @@ function drawBoxs(detections){
   }
 }
 
-//绘制面部特征点
+//facial feature points
 function drawLandmarks(detections){
   if (detections.length > 0) {//If at least 1 face is detected
     for (f=0; f < detections.length; f++){
@@ -139,13 +143,7 @@ function drawLandmarks(detections){
   }
 }
 
-//面部表情绘制，已删掉
-// function drawExpressions(detections, x, y, textYSpace){
-//   if(detections.length > 0){//If at least 1 face is detected
-//     let {neutral, happy, angry, sad, disgusted, surprised, fearful} = detections[0].expressions;
-//   }
-// }
-
+// Draw the flowers when the happy emotion is detected
 function flower() {
   for (let p of petals) {
     p.update();
@@ -450,6 +448,7 @@ function flower() {
 
 }
 
+// the class of the petal
 class Petal {
   constructor() {
     this.x = random(width);
